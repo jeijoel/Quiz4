@@ -26,9 +26,32 @@ namespace Quiz4
             return resultado;
         }
 
+        private void ordenamientoPorSeleccion(int[][] arreglo)
+        {
+            for (int i = 0; i < arreglo.Length - 1; i++)
+            {
+                int minIndex = i;
+                for (int j = i + 1; j < arreglo.Length - 2; j++)
+                {
+                    if (arreglo[j][0] < arreglo[minIndex][0])
+                    {
+                        minIndex = j;
+                    }
+                    else if (arreglo[j][0] == arreglo[minIndex][0] && arreglo[j][1] < arreglo[minIndex][1]) 
+                    {
+                        minIndex = j;
+                    }
+                }
+                int[] temporal = arreglo[minIndex];
+                arreglo[minIndex] = arreglo[i];
+                arreglo[i] = temporal;
+            }
+        }
+
         public int[][] UnirIntervalosTraslapados(int[][] arregloDeArreglos)
         {
             int[][] resultado = new int[][] { };
+            ordenamientoPorSeleccion(arregloDeArreglos);
             return unirIntervalosTraslapadosRecursivo(arregloDeArreglos, new int[] { }, resultado, 0, 0);
         }
 
