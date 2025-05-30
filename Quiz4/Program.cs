@@ -1,6 +1,9 @@
-﻿namespace Quiz4
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks.Dataflow;
+
+namespace Quiz4
 {
-    internal class Program
+    public partial class Program
     {
         static void Main(string[] args)
         {
@@ -20,10 +23,11 @@
             Program programInstance = new Program();
             for (int i = 0; i < miArreglo.Length; i++)
             {
-                miString += "{"+$"{miArreglo[i][0]}, {miArreglo[i][1]}"+"}";
+                miString += "{" + $"{miArreglo[i][0]}, {miArreglo[i][1]}" + "}";
                 if (i != miArreglo.Length - 1) miString += ", ";
             }
             Console.WriteLine("{" + miString + "}");
+            DeterminarAnagrama("abc", "defa");
         }
         
     }

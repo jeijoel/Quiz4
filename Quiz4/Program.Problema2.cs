@@ -8,34 +8,38 @@ namespace Quiz4
 {
     public partial class Program
     {
-        public string DeterminarAnagrama(string string1, string, string2)
+        public static void DeterminarAnagrama(string string1, string string2)
         {
             // Dividir el string en un array de characteres
             char[] Array1 = string1.ToCharArray();
             char[] Array2 = string2.ToCharArray();
+
+            // Contador para los arrays
+            int[] Counter1 = new int[256];
+            int[] Counter2 = new int[256];
+
             // Verificar si la longituid de las palabras es la misma
-            if (Array1.length == Array2.length)
+            if (Array1.Length != Array2.Length)
             {
-                for (i = 0; i < Array1.length; i++) ;
+                Console.WriteLine("Los strings no son de la misma longitud");
+                return;
+            }
+            // Counter para la frecuencia de cada caracter
+            for (int i = 0; i < string1.Length; i++)
+            {
+                Counter1[string1[i]]++;
+                Counter2[string2[i]]++;
+            }
+            // Comparar cada counter
+            for (int i = 0; i < 256; i++)
+            {
+                if (Counter1[i] != Counter2[i])
                 {
-                    // 2do for loop
-                    for (j = 0; j < Array2.length; j++) ;
-                    if (Array1[i] != Array2[j])
-                    {
-                        Console.WriteLine("Los strings no son anagramas.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Los strings son anagramas.");
-                    }
+                    Console.WriteLine("Los strings no son anagramas");
+                    return;
                 }
             }
-            else
-            {
-                Console.WriteLine("Las strings pasados no son anagramas porque no tienen la misma cantidad de caracteres.");
-                return -1;
-            }
-
+            Console.WriteLine("Los strings son anagramas");
         }
     }
 }
